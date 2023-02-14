@@ -68,45 +68,73 @@ btn.forEach((button) => {
 
 oper.forEach((button) => {
     button.addEventListener('click', () => {
-        
-            operator = button.textContent;
-            X.push(y.textContent)
-            X.push(operator)
-            operation.push(y.textContent);
-            x.textContent = X[0] + X[1];
-        
-            y.textContent = '0';
-            Y = y.textContent.split('')
+            if(X.length >= 1 && Y.length >= 1 && button.textContent == '='){
+                equall = equal.textContent;
+                X.push(y.textContent);
+                X.push(equall);
+                operation.push(y.textContent)
+                x.textContent = x.textContent + X[2] + X[3];
+                y.textContent = operate(operator, Number(operation[0]), Number(operation[1]))
+                Y = y.textContent.split('');
+                X = x.textContent.split('');
+                operation = [];
+                equall = undefined;
+                operator = undefined;
+            }else if(X.length >= 1 && Y.length >= 1 && button.textContent != '=') {
+                equall = equal.textContent;
+                X.push(y.textContent);
+                X.push(equall);
+                operation.push(y.textContent)
+                x.textContent = x.textContent + X[2] + X[3];
+                y.textContent = operate(operator, Number(operation[0]), Number(operation[1]))
+                Y = y.textContent.split('');
+                X = x.textContent.split('');
+                operation = [];
+                equall = undefined;
+                operator = undefined;
+            }else {
+                operator = button.textContent;
+                X.push(y.textContent)
+                X.push(operator)
+                operation.push(y.textContent);
+                x.textContent = X[0] + X[1];
+            
+                y.textContent = '0';
+                Y = y.textContent.split('')
+            }
+            
     });
 });
 
 equal.addEventListener('click', () => {
-    if(X.length >= 1 && Y.length >= 1){
+    if((X.length >= 1 && Y.length >= 1)){
         equall = equal.textContent;
         X.push(y.textContent);
         X.push(equall);
         operation.push(y.textContent)
         x.textContent = x.textContent + X[2] + X[3];
         y.textContent = operate(operator, Number(operation[0]), Number(operation[1]))
+        Y = y.textContent.split('');
         X = x.textContent.split('');
         operation = [];
+        equall = undefined;
+        operator = undefined;
     };
 });
 
 del.addEventListener('click', () => {
     Y.pop();
     y.textContent = Y.join('');
+    Y = y.textContent.split('');
+    
 })
 
 cle.addEventListener('click', () => {
-    if(!X.length > 1){
-        y.textContent = '0'
-        x.textContent = ''
-    }else {
-        y.textContent = '0'
-        Y = y.textContent.split('')
-        x.textContent = ''
-    }
+ y.textContent = '0';
+ x.textContent = '';
+ X = x.textContent.split('');
+ Y = y.textContent.split('');
+
     
 });
 
